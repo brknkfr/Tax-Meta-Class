@@ -380,7 +380,6 @@ class Tax_Meta_Class {
         $c = $c + 1;
         
         }
-        $this->show_field_end( $field, $meta );
       }
 
     echo '<img src="';
@@ -391,6 +390,8 @@ class Tax_Meta_Class {
     }
     echo '" alt="'.__('Add','tax-meta').'" title="'.__('Add','tax-meta').'" id="add-'.$field['id'].'"><br/></div>';
     
+    $this->show_field_end( $field, $meta );
+
     //create all fields once more for js function and catch with object buffer
     ob_start();
     echo '<div class="at-repater-block"><table class="repeater-table">';
