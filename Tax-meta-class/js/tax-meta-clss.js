@@ -60,8 +60,11 @@ function update_repeater_fields(){
      *
      * @since 2.1.1
      */
-    $('.at-color').wpColorPicker();
-  
+    $('.at-color').each( function( index, dom ){      
+	   
+      $( dom ).wpColorPicker();
+    });
+ 
     /**
      * Delete File.
      *
@@ -154,8 +157,10 @@ jQuery(document).ready(function($) {
     
   });
 
-  $('.at-color').wpColorPicker();
-
+  $('.at-color').each( function( index, dom ){      
+	   
+    $( dom ).wpColorPicker();
+  });
   /**
    * Helper Function
    *
