@@ -873,6 +873,33 @@ class Tax_Meta_Class {
   }
   
   /**
+   * Show User field.
+   * used creating a user select dropdown
+   * @param string $field 
+   * @param string $meta 
+   * @since 1.0
+   * @access public 
+   * 
+   * @uses get_users()
+   */
+  public function show_field_user($field, $meta) {
+    
+    if (!is_array($meta)) $meta = (array) $meta;
+    $this->show_field_begin($field, $meta);
+
+    $users = get_users();
+    
+	echo "<select name='{$field['id']}" . ($field['multiple'] ? "[]' multiple='multiple' style='height:auto'" : "'") . ">";
+	foreach ($users as $user) {
+	echo "<option value='$user->ID'" . selected(in_array($user->display_name, $meta), true, false) . ">$user->display_name</option>";
+	}
+	echo "</select>";
+
+    
+    $this->show_field_end($field, $meta);
+  }
+  
+  /**
    * Save Data from Metabox
    *
    * @param string $term_id 
@@ -1574,6 +1601,28 @@ class Tax_Meta_Class {
     $new_field = array('type' => 'taxonomy','id'=> $id,'desc' => '','name' => 'Taxonomy Field','options'=> $options,'multiple' => false);
     $new_field = array_merge($new_field, $args);
     if(false === $repeater){
+      $this->_fields[] = $new_field;
+    }else{
+      return $new_field;
+    }
+  }
+
+  /**
+   *  Add User Field to meta box
+   *  @author Sebastian L.
+   *  @since 1.0
+   *  @access public
+   *  @param $id string  field id, i.e. the meta key
+   *  @param $options mixed|array options of user field
+   *    // TODO  
+   *  @param $args mixed|array
+   *    // TODO
+   *  @param $repater bool  is this a field inside a repeatr? true|false(default)
+   */
+  public function addUser($id,$args,$repater=false){
+    $new_field = array('type' => 'user','id'=> $id,'desc' => '','name' => 'User Field','multiple' => false);
+    $new_field = array_merge($new_field, $args);
+    if(false === $repater){
       $this->_fields[] = $new_field;
     }else{
       return $new_field;
