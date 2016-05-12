@@ -892,7 +892,7 @@ class Tax_Meta_Class {
     
 	echo "<select name='{$field['id']}" . ($field['multiple'] ? "[]' multiple='multiple' style='height:auto'" : "'") . ">";
 	foreach ($users as $user) {
-	echo "<option value='$user->ID'" . selected(in_array($user->display_name, $meta), true, false) . ">$user->display_name</option>";
+	echo "<option value='$user->user_login'" . selected(in_array($user->user_login, $meta), true, false) . ">$user->display_name</option>";
 	}
 	echo "</select>";
 
@@ -1614,10 +1614,11 @@ class Tax_Meta_Class {
    *  @since 1.0
    *  @access public
    *  @param $id string  field id, i.e. the meta key
-   *  @param $options mixed|array options of user field
-   *    // TODO  
    *  @param $args mixed|array
-   *    // TODO
+   *    'name' => // field name/label string optional
+   *    'desc' => // field description, string optional
+   *    'std' => // default value, string optional
+   *    'validate_func' => // validate function, string optional
    *  @param $repater bool  is this a field inside a repeatr? true|false(default)
    */
   public function addUser($id,$args,$repater=false){
