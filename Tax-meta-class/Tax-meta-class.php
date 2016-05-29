@@ -892,7 +892,7 @@ class Tax_Meta_Class {
     
 	echo "<select name='{$field['id']}" . ($field['multiple'] ? "[]' multiple='multiple' style='height:auto'" : "'") . ">";
 	foreach ($users as $user) {
-	echo "<option value='$user->user_login'" . selected(in_array($user->user_login, $meta), true, false) . ">$user->display_name</option>";
+	echo "<option value='$user->user_login'" . selected(in_array($user->user_login, $meta), true, false) . ">$user->user_nicename</option>";
 	}
 	echo "</select>";
 
